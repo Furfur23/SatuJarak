@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pengajuan', function () {
+Route::get('/userpengajuan', function () {
     return view('userpengajuan');
 })->name('pengajuan.index');
 
@@ -18,3 +18,7 @@ Route::view('/dashboard', 'userpengajuan')->name('dashboard');
 Route::view('/potensi-desa', 'userpengajuan')->name('potensi-desa');
 Route::view('/layanan', 'userpengajuan')->name('layanan');
 Route::post('/logout', function () { return redirect('/pengajuan'); })->name('logout'); 
+
+Route::get('/detailpengajuan', function () {
+    return view('detailpengajuan');
+})->name('pengajuan.show');
