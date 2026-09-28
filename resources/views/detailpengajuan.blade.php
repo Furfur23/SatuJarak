@@ -20,6 +20,7 @@
   --muted: #708078;
   --border: #E5ECE8;
 
+  /* Alias supaya kode lama tetap jalan */
   --c-forest: var(--forest);
   --c-heading: var(--forest);
   --c-orange: var(--gold);
@@ -71,7 +72,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   min-width: 0;
   display: flex;
   flex-direction: column;
-  margin-left: 280px; /* selebar sidebar (fixed) */
+  margin-left: 280px; 
 }
 
 .topbar {
@@ -140,6 +141,31 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   border: 3px solid #E4F4EC;
 }
 
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.topbar-toggle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: #EEF4F0;
+  color: var(--forest);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+.topbar-toggle:hover { background: var(--mint-soft, #DCEFE6); }
+
+.sidebar-backdrop { display: none; }
+
 .page-body {
   padding: 36px 40px;
   flex: 1;
@@ -201,16 +227,6 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
 }
 
 .sidebar > * { position: relative; z-index: 2; }
-
-.sidebar-toggle {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.85);
-  font-size: 22px;
-  padding: 4px;
-  margin-bottom: 12px;
-  align-self: flex-start;
-}
 
 .brand {
   display: flex;
@@ -282,7 +298,6 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   gap: 11px;
 }
 
-/* menu berbentuk pil */
 .nav-link {
   min-height: 46px;
   padding: 0 18px;
@@ -338,7 +353,6 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   background: white;
   transform: translateY(-3px);
 }
-
 .summary-card {
   position: relative;
   overflow: hidden;
@@ -457,6 +471,14 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   }
   .sidebar.open { left: 0; }
 
+  .sidebar.open + .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 56, 40, 0.45);
+    z-index: 999;
+  }
+
   .page-body { padding: 24px 20px; max-width: 100%; }
   .topbar { padding: 14px 20px; }
 }
@@ -477,7 +499,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   .step-time { font-size: 13px; }
   .status-badge { font-size: 12.5px; padding: 8px 14px; }
   .topbar-title { font-size: 11px; }
-  .icon-btn, .avatar-chip { width: 40px; height: 40px; }
+  .icon-btn, .avatar-chip, .topbar-toggle { width: 40px; height: 40px; }
 }
 </style>
 </head>
@@ -504,7 +526,6 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
 <div class="app-shell">
 
   <aside class="sidebar">
-    <button class="sidebar-toggle d-lg-none" data-sidebar-toggle><i class="bi bi-list"></i></button>
     <div class="brand">
       <div class="brand-icon"><img src="{{ asset('images/logo.png') }}" alt="Logo SatuJarak"></div>
       <div>
@@ -524,10 +545,14 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
       <button type="submit" class="logout-btn">Log Out <i class="bi bi-box-arrow-right"></i></button>
     </form>
   </aside>
+  <div class="sidebar-backdrop" data-sidebar-backdrop></div>
 
   <div class="main-content">
     <div class="topbar">
-      <div class="topbar-title">USER · DETAIL PENGAJUAN</div>
+      <div class="topbar-left">
+        <button class="topbar-toggle d-lg-none" data-sidebar-toggle aria-label="Buka menu"><i class="bi bi-list"></i></button>
+        <div class="topbar-title">USER · DETAIL PENGAJUAN</div>
+      </div>
       <div class="topbar-actions">
         <button class="icon-btn"><i class="bi bi-bell-fill"></i><span class="dot"></span></button>
         <div class="profile-chip">
@@ -571,9 +596,12 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
 <script>
 function initSidebarToggle() {
   const toggleBtn = document.querySelector('[data-sidebar-toggle]');
+  const backdrop = document.querySelector('[data-sidebar-backdrop]');
   const sidebar = document.querySelector('.sidebar');
   if (!toggleBtn || !sidebar) return;
+
   toggleBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+  if (backdrop) backdrop.addEventListener('click', () => sidebar.classList.remove('open'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
