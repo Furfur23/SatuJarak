@@ -17,6 +17,11 @@ Route::post('/pengajuan', function () {
 Route::view('/dashboard', 'userpengajuan')->name('dashboard');
 Route::view('/potensi-desa', 'userpengajuan')->name('potensi-desa');
 Route::view('/layanan', 'userpengajuan')->name('layanan');
+
+Route::view('/admin/potensi-desa', 'Admin.potensiDesa')->name('adminPotensi');
+Route::view('/admin/potensi-desa/detail', 'Admin.detailPotensiDesa')->name('adminDetailPotensi');
+Route::view('/admin/layanan/detail', 'Admin.detailLayanan')->name('adminDetailLayanan');
+
 Route::post('/logout', function () { return redirect('/pengajuan'); })->name('logout'); 
 
 Route::get('/detailpengajuan', function () {
