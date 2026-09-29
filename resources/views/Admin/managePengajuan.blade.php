@@ -178,11 +178,6 @@
                         </a>
 
                         <a href="#">
-                            <i class="bi bi-gear"></i>
-                            Pengaturan
-                        </a>
-
-                        <a href="#">
                             <i class="bi bi-box-arrow-right"></i>
                             Log Out
                         </a>
