@@ -1,311 +1,335 @@
-:root{
-      --forest: #0B3828;
-}
-    /* 1. CSS BASICS & LAYOUT */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: inherit;
-      text-decoration: none;
-    }
-header{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .1rem;
-    background-color: var(--forest);
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999999;
-    box-shadow: 0 .3rem .3rem 5px #063d2a;
+:root {
+  --forest: #0B3828;
 }
 
-header .img-container img{
-    width: 100px;
-    height: 70px;
-    margin-left: 2rem;
+/* 1. CSS BASICS & LAYOUT */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  text-decoration: none;
 }
-header nav{
-    display: flex;
-    gap: 2rem;
-    margin-right: 2rem;
+body{
+   background: #F8FAF9;
 }
-header .fa-solid{
-    display: none;
+header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .1rem;
+  background-color: var(--forest);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999999;
+  box-shadow: 0 .3rem .3rem 5px #063d2a;
 }
-header nav a{
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
+
+header .img-container img {
+  width: 100px;
+  height: 70px;
+  margin-left: 2rem;
 }
 
-    body {
-      background-color: #f4f6f9;
-      color: #333;
-     
-    }
+header nav {
+  display: flex;
+  gap: 2rem;
+  margin-right: 2rem;
+}
 
-    .container {
-      width: 100%;
-      max-width: 900px;
-      background-color: #ffffff;
-      padding: 24px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      position: absolute;
-      top: 6rem;
-      left: 3.7rem;
-    }
+header .fa-solid {
+  display: none;
+}
 
-    h2 {
-      margin-bottom: 20px;
-      color: #1a202c;
-    }
+header nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
 
-    /* 2. TOOLBAR (SEARCH & ADD BUTTON) */
-    .toolbar {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
+body {
+  background-color: #f4f6f9;
+  color: #333;
 
-    .search-input {
-      flex: 1;
-      min-width: 200px;
-      padding: 10px 14px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 14px;
-      outline: none;
-    }
+}
 
-    .search-input:focus {
-      border-color: #3b82f6;
-    }
+.container {
+  width: 100%;
+  max-width: 900px;
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: absolute;
+  top: 6rem;
+  left: 3.7rem;
+}
 
-    .btn-add {
-      background-color:var(--forest);
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
+h2 {
+  margin-bottom: 20px;
+  color: #1a202c;
+}
 
-    .btn-add:hover {
-      background-color: #257c5e;;
-    }
+/* 2. TOOLBAR (SEARCH & ADD BUTTON) */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
 
-    /* 3. TABLE STYLING */
-    .table-responsive {
-      overflow-x: auto;
-    }
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-    .sidebar{
-     display: none;
-    }
+.search-input:focus {
+  border-color: #3b82f6;
+}
 
-    th, td {
-      padding: 12px 16px;
-      border-bottom: 1px solid #e2e8f0;
-      font-size: 14px;
-    }
+.btn-add {
+  background-color: var(--forest);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
 
-    th {
-      background-color: #f8fafc;
-      color: #64748b;
-      font-weight: 600;
-    }
+.btn-add:hover {
+  background-color: #257c5e;
+  ;
+}
 
-    tr:hover {
-      background-color: #f1f5f9;
-    }
+/* 3. TABLE STYLING */
+.table-responsive {
+  overflow-x: auto;
+}
 
-    /* BADGES STATUS */
-    .badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600;
-    }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
 
-    .badge-aktif {
-      background-color: #dcfce7;
-      color: #15803d;
-    }
+.sidebar {
+  display: none;
+}
 
-    .badge-nonaktif {
-      background-color: #fee2e2;
-      color: #b91c1c;
-    }
+th,
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
 
-    /* ACTION BUTTONS */
-    .btn-action {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 13px;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-weight: 500;
-    }
+th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+}
 
-    .btn-edit {
-      color: #2563eb;
-    }
+tr:hover {
+  background-color: #f1f5f9;
+}
 
-    .btn-edit:hover {
-      background-color: #eff6ff;
-    }
+/* BADGES STATUS */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
 
-    .btn-delete {
-      color: #dc2626;
-    }
+.badge-aktif {
+  background-color: #dcfce7;
+  color: #15803d;
+}
 
-    .btn-delete:hover {
-      background-color: #fef2f2;
-    }
+.badge-nonaktif {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
 
-    /* 4. SIMPLE MODAL FORM */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.4);
-      justify-content: center;
-      align-items: center;
-    }
+/* ACTION BUTTONS */
+.btn-action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
 
-    .modal-content {
-      background-color: white;
-      padding: 24px;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 400px;
-    }
+.btn-edit {
+  color: #2563eb;
+}
 
-    .modal-content h3 {
-      margin-bottom: 16px;
-    }
+.btn-edit:hover {
+  background-color: #eff6ff;
+}
 
-    .form-group {
-      margin-bottom: 14px;
-    }
+.btn-delete {
+  color: #dc2626;
+}
 
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: #475569;
-    }
+.btn-delete:hover {
+  background-color: #fef2f2;
+}
 
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 8px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 14px;
-    }
+/* 4. SIMPLE MODAL FORM */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
 
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: 20px;
-    }
+.modal-content {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+}
 
-    .btn-cancel {
-      background-color: #e2e8f0;
-      color: #475569;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+.modal-content h3 {
+  margin-bottom: 16px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #475569;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.btn-cancel {
+  background-color: #e2e8f0;
+  color: #475569;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
 @media (max-width: 768px) {
-  body{
+  body {
     overflow-x: hidden;
   }
 
-.sidebar{
- font-size:1rem;
- background-color: white;
- position: absolute;
- right:-300px;
- height: 100%;
- top: 0;
- bottom: 0;
-width: 250px;
-transition: .2s ease;
-display: block;
-}
-.sidebar.active{
-  right: 0;
-}
-header i{
-  cursor: pointer;
-}
-.sidebar .menu{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3rem;
-  align-items: center;
-  margin-top: 2rem;
-}
-.sidebar .menu a{
-  font-size: 1rem;
-  text-decoration: none;
-  color:var(--forest) ;
-}
-.sidebar .menu a:hover{
-  border-bottom: 2px solid var(--forest);
-  margin: 0 auto;
-  object-fit: cover;
-}
- header nav{
-  display: none;
- } 
-  header .fa-solid{
+  .sidebar {
+    font-size: 1rem;
+    background-color: white;
+    position: absolute;
+    right: -300px;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    transition: .2s ease;
+    display: block;
+  }
+
+  .sidebar.active {
+    right: 0;
+  }
+
+  header i {
+    cursor: pointer;
+  }
+
+  .sidebar .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .sidebar .menu a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--forest);
+  }
+
+  .sidebar .menu a:hover {
+    border-bottom: 2px solid var(--forest);
+    margin: 0 auto;
+    object-fit: cover;
+  }
+
+  header nav {
+    display: none;
+  }
+
+  header .fa-solid {
     margin-right: 1rem;
     display: block;
     font-size: 1.8rem;
   }
-header{
+
+  header {
     padding: .1px;
     position: fixed;
-}
-header .img-container img{
-    margin-left: -.6rem;
-}
-.container{
-  position: absolute;
-  right: 0;
-  left: 0;
-}
-
-/* Atur container tabel */
-
-  .search-input, 
-  .btn-add {
-    width: 100%; /* Lebar penuh pas dengan layar */
   }
-  
+
+  header .img-container img {
+    margin-left: -.6rem;
+  }
+
+  .container {
+    position: absolute;
+    right: 0;
+    left: 0;
+  }
+
+  /* Atur container tabel */
+
+  .search-input,
+  .btn-add {
+    width: 100%;
+    /* Lebar penuh pas dengan layar */
+  }
+
 }
-    
