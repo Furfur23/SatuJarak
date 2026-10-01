@@ -18,9 +18,9 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
         rel="stylesheet"
     >
-
+ss
     <!-- CSS khusus Manage Layanan -->
-    <link rel="stylesheet" href="manageLayanan.css">
+    <link rel="stylesheet" href="{{ asset('css/admin/manageLayanan.css') }}">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
         <div class="sidebar-brand">
 
             <div class="logo-mark">
-                <img src="logo.png" alt="Logo Satu Jarak">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Satu Jarak">
             </div>
 
             <h2>Satu Jarak</h2>
@@ -71,7 +71,7 @@
 
             <a href="#" class="nav-item">
                 <i class="bi bi-people-fill"></i>
-                <span>User</span>
+                <span>Kelola Pengguna</span>
             </a>
 
         </nav>
@@ -685,7 +685,7 @@
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 ></script>
 
-<script src="manageLayanan.js"></script>
+<script src="{{ asset('js/admin/manageLayanan.js') }}"></script>
 
 </body>
 
