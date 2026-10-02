@@ -11,16 +11,19 @@
     <div class="login-container">
         <h2>Silahkan Login</h2>
         <form action="">
-            <label for="username">Username: </label>
-            <input type="text" name="username" placeholder="Username atau Gmail" required>
+            <label for="username">NIK: </label>
+            <input type="number" name="NIK" placeholder="Masukkan NIK Anda" required>
             
             <label for="username">Password: </label>
+            <div class="pass-container">
             <input type="password" name="password" id="password" placeholder="Password Anda" required>
+            <i class="fa-solid fa-eye" id="togglePassword"></i>
+            </div>
 
               <a class="btn" type="submit">Login</a>
         </form>
        <span>Belum punya akun? <a href="daftar.html">Daftar</a></span>
     </div>
-    
+    <script src="login.js"></script>
 </body>
 </html>

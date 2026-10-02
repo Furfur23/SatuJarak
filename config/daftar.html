@@ -5,24 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
       <link rel="stylesheet" href="daftar.css">
-    <title>LOGIN PAGE</title>
+    <title>REGISTER PAGE</title>
 </head>
 <body>
-    <div class="login-container">
+    <div class="register-container">
         <h2>Silahkan Daftar</h2>
         <form action="">
-            <label for="username">Nama: </label>
-            <input type="text" name="username" placeholder="Nama Lengkap" required>
+            <label for="NIK">Nama Lengkap: </label>
+            <input type="text" name="Nama Lengkap" placeholder="Nama Lengkap" required>
 
-            <label for="username">Username: </label>
-            <input type="text" name="username" placeholder="Username atau Gmail" required>
+            <label for="NIK">NIK: </label>
+            <input type="number" name="NIK" placeholder="Masukkan NIK Anda" required>
             
             <label for="username">Password: </label>
+            <div class="pass-container">
             <input type="password" name="password" id="password" placeholder="Password Anda" required>
-
+            <i class="fa-solid fa-eye" id="togglePassword"></i>
+            </div>
               <a class="btn" type="submit">Daftar</a>
         </form>
-       <span>Sudah punya akun? <a href="login.html">Daftar</a></span>
+       <span>Sudah punya akun? <a href="login.html">Login</a></span>
     </div>
     
 </body>
