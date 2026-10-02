@@ -114,14 +114,6 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   border: 2px solid #EEF4F0;
 }
 
-.profile-chip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
 .avatar-chip {
   width: 46px;
   height: 46px;
@@ -134,6 +126,86 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   font-size: 22px;
   border: 3px solid #E4F4EC;
 }
+
+.profile-menu { position: relative; }
+
+.profile-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.profile-chip .bi-chevron-down {
+  font-size: 13px;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+.profile-chip[aria-expanded="true"] .bi-chevron-down { transform: rotate(180deg); }
+
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 260px;
+  background: var(--card-bg);
+  border-radius: 18px;
+  box-shadow: 0 14px 36px rgba(11, 59, 44, 0.16);
+  border: 1px solid var(--border);
+  padding: 18px;
+  z-index: 1200;
+}
+.profile-dropdown.open { display: block; }
+
+.profile-dropdown-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-dropdown-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--mint);
+  color: var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.profile-dropdown-name { font-weight: 800; font-size: 15px; color: var(--text-main); }
+.profile-dropdown-role { font-size: 12.5px; color: var(--text-muted); }
+
+.profile-dropdown-list { list-style: none; padding: 0; margin: 0; }
+
+.profile-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 8px;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: left;
+  transition: background 0.15s ease;
+}
+.profile-dropdown-item i { font-size: 15px; color: var(--muted); width: 18px; }
+.profile-dropdown-item:hover { background: var(--mint-soft); }
 
 .topbar-left {
   display: flex;
@@ -346,6 +418,99 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   background: white;
   transform: translateY(-3px);
 }
+
+/* ---------- BANTUAN (sidebar) ---------- */
+.help-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  padding: 20px 18px;
+  margin-top: 18px;
+}
+
+.help-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 14.5px;
+  margin-bottom: 14px;
+}
+
+.help-title-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--gold), var(--mint));
+  color: var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.help-section-label {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.help-schedule { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+
+.help-schedule-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12.5px;
+}
+
+.help-day { color: #FFFFFF; font-weight: 700; }
+.help-hours { color: rgba(255, 255, 255, 0.65); font-weight: 600; white-space: nowrap; }
+
+.help-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 14px 0;
+  border: none;
+}
+
+.help-contact { display: flex; flex-direction: column; gap: 10px; }
+
+.help-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFFFFF;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 6px 8px;
+  margin: -6px -8px;
+  transition: background 0.15s ease;
+  word-break: break-all;
+}
+
+.help-contact-link:hover { background: rgba(255, 255, 255, 0.08); }
+
+.help-contact-link i {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--mint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
 .section-card {
   background: var(--card-bg);
   border-radius: var(--radius-lg);
@@ -503,13 +668,13 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   .topbar { padding: 14px 20px; }
 }
 
-/* Mobile kecil */
 @media (max-width: 576px) {
   .sidebar { width: 260px; left: -280px; padding: 24px 18px; }
   .brand { margin-bottom: 28px; }
   .brand-icon { width: 68px; height: 68px; border-radius: 21px; }
   .brand-icon img { width: 83px; height: 83px; }
   .brand-name { font-size: 24px; }
+  .help-card { padding: 16px 14px; margin-top: 14px; }
 
   .page-heading { font-size: 24px; }
   .page-sub { font-size: 13px; }
@@ -525,6 +690,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   }
   .topbar-title { font-size: 11px; }
   .icon-btn, .avatar-chip, .topbar-toggle { width: 40px; height: 40px; }
+  .profile-dropdown { width: 230px; right: -8px; }
 }
 </style>
 </head>
@@ -533,25 +699,49 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
 <div class="app-shell">
 
   <aside class="sidebar">
-    <div class="brand">
-      <div class="brand-icon"><img src="{{ asset('images/logo.png') }}" alt="Logo SatuJarak"></div>
-      <div>
-        <div class="brand-name">Satu Jarak</div>
-        <div class="brand-sub">Pelayanan Publik Desa</div>
+  <div class="brand">
+    <div class="brand-icon"><img src="{{ asset('images/logo.png') }}" alt="Logo SatuJarak"></div>
+    <div>
+      <div class="brand-name">Satu Jarak</div>
+      <div class="brand-sub">Pelayanan Publik Desa</div>
+    </div>
+  </div>
+  <ul class="nav-list">
+    <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('dashboard') kalau halamannya sudah ada --}}<i class="bi bi-grid-fill"></i> Dashboard</a></li>
+    <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('potensi-desa') --}}<i class="bi bi-stars"></i> Potensi Desa</a></li>
+    <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('layanan') --}}<i class="bi bi-gear-fill"></i> Layanan</a></li>
+  </ul>
+
+  <div class="help-card">
+    <div class="help-title">
+      <span class="help-title-icon"><i class="bi bi-headset"></i></span>
+      Butuh Bantuan?
+    </div>
+
+    <div class="help-section-label">Jam Operasional Kantor Desa</div>
+    <div class="help-schedule">
+      <div class="help-schedule-row">
+        <span class="help-day">Senin - Kamis</span>
+        <span class="help-hours">08.00 - 13.00 WIB</span>
+      </div>
+      <div class="help-schedule-row">
+        <span class="help-day">Jumat</span>
+        <span class="help-hours">08.00 - 11.00 WIB</span>
       </div>
     </div>
-    <ul class="nav-list">
-      <li><a href="{{ url('/') }}" class="nav-link"><i class="bi bi-house-door-fill"></i> SatuJarak</a></li>
-      <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('dashboard') kalau halamannya sudah ada --}}<i class="bi bi-grid-fill"></i> Dashboard</a></li>
-      <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('potensi-desa') --}}<i class="bi bi-stars"></i> Potensi Desa</a></li>
-      <li><a href="{{ route('pengajuan.index') }}" class="nav-link {{ request()->routeIs('pengajuan.*') ? 'active' : '' }}"><i class="bi bi-file-earmark-text-fill"></i> Pengajuan</a></li>
-      <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('layanan') --}}<i class="bi bi-gear-fill"></i> Layanan</a></li>
-    </ul>
-    <form method="POST" action="{{ route('logout') }}">
-      @csrf
-      <button type="submit" class="logout-btn">Log Out <i class="bi bi-box-arrow-right"></i></button>
-    </form>
-  </aside>
+
+    <hr class="help-divider">
+
+    <div class="help-contact">
+      <a href="mailto:desajarak204@gmail.com" class="help-contact-link">
+        <i class="bi bi-envelope-fill"></i> desajarak204@gmail.com
+      </a>
+      <a href="https://instagram.com/ds.jarak" target="_blank" rel="noopener" class="help-contact-link">
+        <i class="bi bi-instagram"></i> @ds.jarak
+      </a>
+    </div>
+  </div>
+</aside>
   <div class="sidebar-backdrop" data-sidebar-backdrop></div>
 
   <div class="main-content">
@@ -562,9 +752,32 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
       </div>
       <div class="topbar-actions">
         <button class="icon-btn"><i class="bi bi-bell-fill"></i><span class="dot"></span></button>
-        <div class="profile-chip">
-          <div class="avatar-chip"><i class="bi bi-person-fill"></i></div>
-          <i class="bi bi-chevron-down"></i>
+
+        <div class="profile-menu">
+          <button class="profile-chip" type="button" data-profile-toggle aria-haspopup="true" aria-expanded="false">
+            <div class="avatar-chip"><i class="bi bi-person-fill"></i></div>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+
+          <div class="profile-dropdown" data-profile-dropdown>
+            <div class="profile-dropdown-head">
+              <span class="profile-dropdown-avatar"><i class="bi bi-person-fill"></i></span>
+              <div>
+                <div class="profile-dropdown-name">{{ Auth::user()->name ?? 'User' }}</div>
+                <div class="profile-dropdown-role">Mahasiswa</div>
+              </div>
+            </div>
+            <ul class="profile-dropdown-list">
+              <li><a href="#" onclick="return false;" class="profile-dropdown-item"><i class="bi bi-person"></i> Profil</a></li>
+              <li><a href="#" onclick="return false;" class="profile-dropdown-item"><i class="bi bi-gear"></i> Pengaturan</a></li>
+              <li>
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button type="submit" class="profile-dropdown-item"><i class="bi bi-box-arrow-right"></i> Log Out</button>
+                </form>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -696,6 +909,31 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   if (backdrop) backdrop.addEventListener('click', () => sidebar.classList.remove('open'));
 }
 
+function initProfileDropdown() {
+  const toggleBtn = document.querySelector('[data-profile-toggle]');
+  const dropdown = document.querySelector('[data-profile-dropdown]');
+  if (!toggleBtn || !dropdown) return;
+
+  const closeDropdown = () => {
+    dropdown.classList.remove('open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  };
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = dropdown.classList.toggle('open');
+    toggleBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target) && !toggleBtn.contains(e.target)) closeDropdown();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDropdown();
+  });
+}
+
 function initPengajuanForm() {
   const form = document.getElementById('form-pengajuan');
   if (!form) return;
@@ -724,6 +962,7 @@ function initPengajuanForm() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initSidebarToggle();
+  initProfileDropdown();
   initPengajuanForm();
 });
 </script>

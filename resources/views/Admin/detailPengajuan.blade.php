@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="detailPengajuan.css">
+    <link rel="stylesheet" href="{{ asset('css/admin/detailPengajuan.css') }}">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
         <div class="sidebar-brand">
 
             <div class="logo-mark">
-                <img src="logo.png" alt="Logo Satu Jarak">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Satu Jarak">
             </div>
 
             <h2>Satu Jarak</h2>
@@ -654,7 +654,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="detailPengajuan.js"></script>
+<script src="{{ asset('js/admin/detailPengajuan.js') }}"></script>
 
 </body>
 </html>
