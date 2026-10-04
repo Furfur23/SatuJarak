@@ -30,3 +30,5 @@ Route::post('/logout', function () { return redirect('/pengajuan'); })->name('lo
 Route::view('/detailpengajuan', 'User.detailpengajuan')->name('pengajuan.show');
 
 Route::view('/dashboardadmin', 'Admin.dashboardadmin');
+
+Route::view('/layanan', 'User.layanan')->name('layanan');
