@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detail Pengguna - Admin Dashboard</title>
-   <link rel="stylesheet" href="admin_detail_user.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+ <link rel="stylesheet" href="{{ asset('css/admin/admin_detail_user.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 </head>
+
 <body>
 
   <div class="detail-container">
@@ -27,7 +29,7 @@
           <p id="userUsername">@ -</p>
           <span class="badge-status badge-empty" id="userStatus">Tidak Ada Status</span>
         </div>
-        
+
         <div class="action-header-btns">
           <button class="btn btn-edit" id="btnEdit" disabled>Edit Pengguna</button>
           <button class="btn btn-delete" id="btnDelete" disabled>Hapus</button>
@@ -37,11 +39,6 @@
 
     <!-- MAIN BODY KOSONG -->
     <div class="detail-body">
-      
-      <div class="empty-state-banner">
-        ⚠️ Silakan pilih data pengguna terlebih dahulu dari halaman utama untuk menampilkan detail profil.
-      </div>
-
       <!-- INFORMASI AKUN -->
       <div>
         <div class="section-title">Informasi Akun</div>
@@ -78,7 +75,7 @@
           </thead>
           <tbody id="activityBody">
             <tr>
-              <td colspan="3">Belum ada riwayat aktivitas</td>
+              <td colspan="3" class="text-center">Belum ada riwayat aktivitas</td>
             </tr>
           </tbody>
         </table>
@@ -88,8 +85,8 @@
   </div>
 
 
- <script src="admin_detail_user.js"></script>
+  <script src="{{ asset('js/admin_detail_user.js') }}"></script>
   <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body> 
+</body>
 
 </html>

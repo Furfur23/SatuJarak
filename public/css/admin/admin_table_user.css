@@ -48,7 +48,9 @@ header nav a {
   text-decoration: none;
   font-size: 1.2rem;
 }
-
+header nav a:hover{
+  color: rgb(231, 183, 95);
+}
 body {
   background-color: #f4f6f9;
   color: #333;
