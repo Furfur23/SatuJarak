@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
+Route::view('/login', 'auth.login')->name('login');
+
+Route::view('/daftar', 'auth.daftar')->name('daftar');
+
 Route::view('/', 'welcome')->name('home');
 
 Route::view('/userpengajuan', 'User.userpengajuan')->name('pengajuan.index');
@@ -30,3 +36,5 @@ Route::post('/logout', function () { return redirect('/pengajuan'); })->name('lo
 Route::view('/detailpengajuan', 'User.detailpengajuan')->name('pengajuan.show');
 
 Route::view('/dashboardadmin', 'Admin.dashboardadmin');
+
+Route::view('/layanan', 'User.layanan')->name('layanan');
