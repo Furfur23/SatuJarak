@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AdminLoginController;
 
-
+$secretPath = env('ADMIN_SECRET_LOGIN_PATH', 'admin-secret-login');
+Route::get($secretPath, [AdminLoginController::class, 'showLoginForm'])->name('admin.login.form');
+Route::post($secretPath, [AdminLoginController::class, 'login'])->name('admin.login.submit');
 
 Route::view('/login', 'auth.login')->name('login');
 
@@ -38,3 +41,4 @@ Route::view('/detailpengajuan', 'User.detailpengajuan')->name('pengajuan.show');
 Route::view('/dashboardadmin', 'Admin.dashboardadmin');
 
 Route::view('/layanan', 'User.layanan')->name('layanan');
+
