@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/admin/login.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/admin/login.css') }}"> -->
+     <link rel="stylesheet" href="login.css">
     <title>LOGIN PAGE</title>
 </head>
 <body>
+     <!-- Background decoration -->
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+    <div class="circle circle-4"></div>
+    <div class="circle circle-5"></div>
+    <div class="circle circle-6"></div>
+
     <div class="login-container">
         <h2>Silahkan Login</h2>
         <form action="">

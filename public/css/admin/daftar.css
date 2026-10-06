@@ -40,6 +40,7 @@ body{
     padding: 0.5rem;
     border: 1px solid black;
     margin-top: 0.5rem;
+    border-radius: 20px;
 }
 .register-container form label{
     font-size: 1rem;
@@ -60,6 +61,7 @@ body{
     margin-top: 1rem;
     padding: 0.5rem;
     cursor: pointer;
+    border-radius: 20px;
 }
 .register-container form a:hover{
    background-color: rgb(1, 102, 1);
@@ -77,4 +79,56 @@ body{
 }
 span a{
     color: var(--forest);
+    font-weight: 1000;
+}
+/* background decoration */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+}
+
+/* Kiri atas */
+.circle-1 {
+    width: 220px;
+    height: 220px;
+    top: -100px;
+    left: -80px;
+}
+
+/* Kanan atas */
+.circle-2 {
+    width: 150px;
+    height: 150px;
+    top: 3px;
+    right: -60px;
+}
+
+/* Kiri bawah */
+.circle-3 {
+    width: 180px;
+    height: 180px;
+    bottom: -80px;
+    left: -70px;
+}
+
+/* Kanan bawah */
+.circle-4 {
+    width: 260px;
+    height: 260px;
+    bottom: -130px;
+    right: -100px;
+}
+
+.circle-5 {
+    width: 200px;
+    height: 200px;
+    left: 21rem;
+}
+.circle-6 {
+    width: 180px;
+    height: 180px;
+    right: 11rem;
+    bottom: 16rem;
 }
