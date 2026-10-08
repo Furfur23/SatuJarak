@@ -23,6 +23,7 @@ Route::view('/dashboard', 'Admin.dashboardadmin')->name('dashboard');
 Route::view('/potensi-desa', 'Admin.potensiDesa')->name('potensi-desa');
 Route::view('/layanan', 'Admin.manageLayanan')->name('layanan');
 
+
 Route::view('/admin/dashboard', 'Admin.dashboardadmin')->name('admin.dashboard');
 Route::view('/admin/pengajuan', 'Admin.managePengajuan')->name('admin.pengajuan.index');
 Route::view('/admin/layanan', 'Admin.manageLayanan')->name('admin.layanan.index');
@@ -32,6 +33,7 @@ Route::view('/admin/potensi-desa/detail', 'Admin.detailPotensiDesa')->name('admi
 Route::view('/admin/layanan/detail', 'Admin.detailLayanan')->name('adminDetailLayanan');
 Route::view('/admin/lpengajuan/detail', 'Admin.detailPengajuan')->name('adminDetailPengajuan');
 
+Route::view('/pdf/lihat', 'pdfViewer')->name('lihatPDF');
 
 
 Route::post('/logout', function () { return redirect('/pengajuan'); })->name('logout');
