@@ -8,7 +8,17 @@ Route::view('/login', 'auth.login')->name('login');
 
 Route::view('/daftar', 'auth.daftar')->name('daftar');
 
-Route::view('/', 'welcome')->name('home');
+Route::view('/', 'auth.login')->name('home');
+
+Route::view('/', 'auth.daftar')->name('home');
+
+Route::view('/adminUserDetail', 'Admin.adminUserDetail')->name('adminUserDetail');
+
+Route::view('/adminUserTable', 'Admin.adminUserTable')->name('adminUserTable');
+
+Route::view('/', 'Admin.adminUserDetai')->name('home');
+
+Route::view('/', 'Admin.adminUserTable')->name('home');
 
 Route::view('/userpengajuan', 'User.userpengajuan')->name('pengajuan.index');
 

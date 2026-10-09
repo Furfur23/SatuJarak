@@ -7,7 +7,17 @@
       <link rel="stylesheet" href="{{ asset('css/admin/daftar.css') }}">
     <title>REGISTER PAGE</title>
 </head>
-<body>
+<body>'
+<div class="left-side">
+    <div class="container-leftside">
+            <div class="content">
+                    <h2>Selamat datang</h2>
+                    <h4>Silahkan daftarkan akun anda untuk melanjutkan layanan</h4>
+            </div>
+            <img src="images/logo.png" alt="">
+    </div>
+</div>
+<div class="right-side">
     <div class="register-container">
         <h2>Silahkan Daftar</h2>
         <form action="">
@@ -26,6 +36,7 @@
         </form>
        <span>Sudah punya akun? <a href="login.html">Login</a></span>
     </div>
-    
+</div>
+    <script src="{{ asset('js/login.js') }}"></script>
 </body>
 </html>
