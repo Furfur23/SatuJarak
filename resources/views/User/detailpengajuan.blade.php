@@ -701,7 +701,6 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   <ul class="nav-list">
     <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('dashboard') kalau halamannya sudah ada --}}<i class="bi bi-grid-fill"></i> Dashboard</a></li>
     <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('potensi-desa') --}}<i class="bi bi-stars"></i> Potensi Desa</a></li>
-    <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('layanan') --}}<i class="bi bi-gear-fill"></i> Layanan</a></li>
   </ul>
 
   <div class="help-card">
