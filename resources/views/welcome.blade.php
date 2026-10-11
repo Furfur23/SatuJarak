@@ -37,13 +37,13 @@
      * 'kategori' (masyarakat | aparatur) belum ada di ERD, lihat catatan di balasan.
      */
     $layanans = $layanans ?? [
-        ['nama_layanan' => 'Antrean Online Dukcapil', 'deskripsi' => 'Ambil nomor antrean untuk layanan administrasi kependudukan.', 'link_url' => '#', 'kategori' => 'masyarakat'],
+        ['nama_layanan' => 'Antrean Online Dukcapil', 'deskripsi' => 'Ambil nomor antrean untuk layanan administrasi kependudukan.', 'link_url' => 'https://antriandukcapil.kedirikab.go.id/', 'kategori' => 'masyarakat'],
         ['nama_layanan' => 'ESPPT-I', 'deskripsi' => 'Layanan terkait SPPT pajak bumi dan bangunan.', 'link_url' => '#', 'kategori' => 'masyarakat'],
         ['nama_layanan' => 'PESONA', 'deskripsi' => 'Informasi profil dan data kependudukan desa.', 'link_url' => '#', 'kategori' => 'masyarakat'],
         ['nama_layanan' => 'SIKSNG', 'deskripsi' => 'Sistem informasi untuk administrasi aparatur desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
         ['nama_layanan' => 'SIPENAK (SIMNANGKIS)', 'deskripsi' => 'Sistem pendukung pekerjaan administrasi desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
         ['nama_layanan' => 'Sistem Kependudukan', 'deskripsi' => 'Pengelolaan data kependudukan oleh aparatur desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
-        ['nama_layanan' => 'SINGKAH 4', 'deskripsi' => 'Sistem pendukung administrasi desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
+        ['nama_layanan' => 'SIMKAH 4', 'deskripsi' => 'Sistem pendukung administrasi desa.', 'link_url' => 'https://simkah4.kemenag.go.id/', 'kategori' => 'aparatur'],
         ['nama_layanan' => 'Website Desa Jarak', 'deskripsi' => 'Profil, berita, dan potensi Desa Jarak.', 'link_url' => 'https://desajarak.com', 'kategori' => 'masyarakat'],
     ];
 
