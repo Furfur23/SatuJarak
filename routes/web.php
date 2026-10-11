@@ -2,33 +2,32 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\UserAuthController;
 
 // ---------- Publik ----------
 Route::view('/', 'welcome')->name('home');
+Route::view('/layanan', 'User.layanan')->name('layanan');
+
+// ---------- Auth user (tamu saja) ----------
 Route::view('/login', 'auth.login')->name('login');
 Route::view('/daftar', 'auth.daftar')->name('daftar');
-Route::post('/daftar', function () {
-    return back()->with('status', 'Pendaftaran belum dihubungkan ke database.');
-})->name('daftar.submit');
-
-// TODO: ganti dengan controller login pemohon (guard 'pemohon', tabel pemohon)
-Route::post('/login', function () {
-    return back()->withErrors(['email' => 'Login belum dihubungkan ke database.'])->onlyInput('email');
-})->name('login.submit');
-
-Route::view('/layanan', 'User.layanan')->name('layanan');
+Route::post('/login', [UserAuthController::class, 'login'])->name('login.submit');
+Route::post('/daftar', [UserAuthController::class, 'register'])->name('daftar.submit');
+Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout');
 
 // ---------- Login admin (jalur rahasia) ----------
 $secretPath = env('ADMIN_SECRET_LOGIN_PATH', 'admin-secret-login');
 Route::get($secretPath, [AdminLoginController::class, 'showLoginForm'])->name('admin.login.form');
 Route::post($secretPath, [AdminLoginController::class, 'login'])->name('admin.login.submit');
 
-// ---------- Pemohon ----------
-Route::view('/userpengajuan', 'User.userpengajuan')->name('pengajuan.index');
-Route::view('/detailpengajuan', 'User.detailpengajuan')->name('pengajuan.show');
-Route::post('/pengajuan', function () {
-    return redirect()->route('pengajuan.index')->with('success', 'Pengajuan berhasil dikirim!');
-})->name('pengajuan.store');
+// ---------- User (wajib login) ----------
+Route::middleware('auth')->group(function () {
+    Route::view('/userpengajuan', 'User.userpengajuan')->name('pengajuan.index');
+    Route::view('/detailpengajuan', 'User.detailpengajuan')->name('pengajuan.show');
+    Route::post('/pengajuan', function () {
+        return redirect()->route('pengajuan.index')->with('success', 'Pengajuan berhasil dikirim!');
+    })->name('pengajuan.store');
+});
 
 // ---------- Admin ----------
 Route::view('/admin/dashboard', 'Admin.dashboardadmin')->name('admin.dashboard');
@@ -48,4 +47,3 @@ Route::view('/potensi-desa', 'Admin.potensiDesa')->name('potensi-desa');
 
 // ---------- Lainnya ----------
 Route::view('/pdf/lihat', 'pdfViewer')->name('lihatPDF');
-Route::post('/logout', fn () => redirect()->route('home'))->name('logout');

@@ -30,9 +30,9 @@
 
         {{-- Panel kiri: identitas --}}
         <aside class="hidden flex-col justify-between bg-[var(--ink)] p-12 text-white md:flex">
-            <a href="{{ url('/') }}" class="font-display flex items-center gap-3 text-2xl font-bold">
-                <img src="{{ asset('images/logo.png') }}" alt="" class="h-12 w-auto" onerror="this.remove()">
-                <span>Satu<span class="text-[var(--kunyit)]">Jarak</span></span>
+            <a href="{{ url('/') }}" class="font-display text-2xl font-bold">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo SatuJarak" class="h-12 mr-2">
+                Satu<span class="text-[var(--kunyit)]">Jarak</span>
             </a>
             <div>
                 <p class="font-display max-w-sm text-4xl font-bold leading-tight">
@@ -65,13 +65,13 @@
 
                     {{-- Nama lengkap --}}
                     <div>
-                        <label for="nama_lengkap" class="mb-1.5 block text-sm font-semibold">Nama lengkap</label>
-                        <input id="nama_lengkap" name="nama_lengkap" type="text" value="{{ old('nama_lengkap') }}"
+                        <label for="name" class="mb-1.5 block text-sm font-semibold">Nama lengkap</label>
+                        <input id="name" name="name" type="text" value="{{ old('name') }}"
                                required autofocus autocomplete="name" maxlength="150"
-                               @error('nama_lengkap') aria-invalid="true" aria-describedby="nama-error" @enderror
-                               class="w-full rounded-md border bg-white px-4 py-3 outline-none focus:border-[var(--leaf)] focus:ring-2 focus:ring-[var(--kunyit)] @error('nama_lengkap') border-[var(--error)] @else border-[var(--line)] @enderror">
-                        @error('nama_lengkap')
-                            <p id="nama-error" class="mt-1.5 text-sm text-[var(--error)]">{{ $message }}</p>
+                               @error('name') aria-invalid="true" aria-describedby="name-error" @enderror
+                               class="w-full rounded-md border bg-white px-4 py-3 outline-none focus:border-[var(--leaf)] focus:ring-2 focus:ring-[var(--kunyit)] @error('name') border-[var(--error)] @else border-[var(--line)] @enderror">
+                        @error('name')
+                            <p id="name-error" class="mt-1.5 text-sm text-[var(--error)]">{{ $message }}</p>
                         @enderror
                     </div>
 
