@@ -36,7 +36,7 @@ Route::view('/admin/layanan', 'Admin.manageLayanan')->name('admin.layanan.index'
 Route::view('/admin/potensi-desa', 'Admin.potensiDesa')->name('adminPotensi');
 Route::view('/admin/potensi-desa/detail', 'Admin.detailPotensiDesa')->name('adminDetailPotensi');
 Route::view('/admin/layanan/detail', 'Admin.detailLayanan')->name('adminDetailLayanan');
-Route::view('/admin/lpengajuan/detail', 'Admin.detailPengajuan')->name('adminDetailPengajuan');
+Route::view('/admin/pengajuan/detail', 'Admin.detailPengajuan')->name('adminDetailPengajuan');
 Route::view('/adminUserDetail', 'Admin.adminUserDetail')->name('adminUserDetail');
 Route::view('/adminUserTable', 'Admin.adminUserTable')->name('adminUserTable');
 
