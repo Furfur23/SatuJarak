@@ -37,14 +37,14 @@
      * 'kategori' (masyarakat | aparatur) belum ada di ERD, lihat catatan di balasan.
      */
     $layanans = $layanans ?? [
-        ['nama_layanan' => 'Antrean Online Dukcapil', 'deskripsi' => 'Ambil nomor antrean untuk layanan administrasi kependudukan.', 'link_url' => 'https://antriandukcapil.kedirikab.go.id/', 'kategori' => 'masyarakat'],
-        ['nama_layanan' => 'ESPPT-I', 'deskripsi' => 'Layanan terkait SPPT pajak bumi dan bangunan.', 'link_url' => '#', 'kategori' => 'masyarakat'],
-        ['nama_layanan' => 'PESONA', 'deskripsi' => 'Informasi profil dan data kependudukan desa.', 'link_url' => '#', 'kategori' => 'masyarakat'],
+        ['nama_layanan' => 'Antrean Online Dukcapil', 'deskripsi' => 'Ambil nomor antrean untuk layanan administrasi kependudukan.', 'link_url' => 'https://antriandukcapil.kedirikab.go.id/', 'logo' => 'images/logo_kediri.png', 'kategori' => 'masyarakat'],
+        ['nama_layanan' => 'ESPPT-I', 'deskripsi' => 'Layanan terkait SPPT pajak bumi dan bangunan.', 'link_url' => '#', 'logo' => 'images/logo_kediri.png', 'kategori' => 'masyarakat'],
+        ['nama_layanan' => 'PESONA', 'deskripsi' => 'Informasi profil dan data kependudukan desa.', 'link_url' => 'https://play.google.com/store/apps/details?id=com.ruwindo.pesonakediri&hl=id', 'kategori' => 'masyarakat'],
         ['nama_layanan' => 'SIKSNG', 'deskripsi' => 'Sistem informasi untuk administrasi aparatur desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
         ['nama_layanan' => 'SIPENAK (SIMNANGKIS)', 'deskripsi' => 'Sistem pendukung pekerjaan administrasi desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
         ['nama_layanan' => 'Sistem Kependudukan', 'deskripsi' => 'Pengelolaan data kependudukan oleh aparatur desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
-        ['nama_layanan' => 'SIMKAH 4', 'deskripsi' => 'Sistem pendukung administrasi desa.', 'link_url' => 'https://simkah4.kemenag.go.id/', 'kategori' => 'aparatur'],
-        ['nama_layanan' => 'Website Desa Jarak', 'deskripsi' => 'Profil, berita, dan potensi Desa Jarak.', 'link_url' => 'https://desajarak.com', 'kategori' => 'masyarakat'],
+        ['nama_layanan' => 'SIMKAH 4', 'deskripsi' => 'Sistem pendukung administrasi desa.', 'link_url' => 'https://simkah4.kemenag.go.id/', 'logo' => 'images/logo_simkah_withbg.png', 'kategori' => 'aparatur'],
+        ['nama_layanan' => 'Website Desa Jarak', 'deskripsi' => 'Profil, berita, dan potensi Desa Jarak.', 'link_url' => 'https://desajarak.com', 'logo' => 'images/logo_kediri.png', 'kategori' => 'masyarakat'],
     ];
 
     $informasis = $informasis ?? [
@@ -140,7 +140,12 @@
                         <a href="{{ data_get($l, 'link_url', '#') }}" target="_blank" rel="noopener noreferrer"
                            class="group grid grid-cols-[auto_1fr_auto] items-center gap-4 py-5 hover:bg-white sm:px-3">
                             <span class="font-display flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--leaf)] text-lg font-bold text-white" aria-hidden="true">
-                                {{ strtoupper(mb_substr($nama, 0, 1)) }}
+                                {{-- {{ strtoupper(mb_substr($nama, 0, 1)) }} --}}
+                                @if (data_get($l, 'logo'))
+                                    <img src="{{ asset(data_get($l, 'logo')) }}" alt="" class="h-10 w-10 object-contain">
+                                @else
+                                    {{ strtoupper(mb_substr($nama, 0, 1)) }}
+                                @endif
                             </span>
                             <span>
                                 <span class="block text-lg font-semibold group-hover:underline underline-offset-4">{{ $nama }}</span>
