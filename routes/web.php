@@ -3,19 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminLoginController;
 
-/*
-|--------------------------------------------------------------------------
-| Versi rapi dari routes/web.php
-| Perubahan: route '/' hanya satu (landing page), nama 'home' tidak ganda,
-| '/layanan' tidak ganda, typo 'Admin.adminUserDetai' dihapus,
-| route login ditambah (login.submit) sebagai placeholder.
-|--------------------------------------------------------------------------
-*/
-
 // ---------- Publik ----------
 Route::view('/', 'welcome')->name('home');
 Route::view('/login', 'auth.login')->name('login');
 Route::view('/daftar', 'auth.daftar')->name('daftar');
+Route::post('/daftar', function () {
+    return back()->with('status', 'Pendaftaran belum dihubungkan ke database.');
+})->name('daftar.submit');
 
 // TODO: ganti dengan controller login pemohon (guard 'pemohon', tabel pemohon)
 Route::post('/login', function () {
