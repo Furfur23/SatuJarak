@@ -54,5 +54,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::view('/adminUserTable', 'Admin.adminUserTable')->name('adminUserTable');
 });
 
-// ---------- Lainnya ----------
-Route::view('/pdf/lihat', 'pdfViewer')->name('lihatPDF');
+Route::view('/layanan', 'User.layanan')->name('layanan');
+
+Route::get('/admin/adminUserTable', function () {
+    return view('Admin.adminUserTable');
+});
+Route::get('/admin/adminUserDetail', function () {
+    return view('Admin.adminUserDetail');
+});
