@@ -232,7 +232,7 @@
                     <h2>Pengajuan</h2>
 
                     <p>
-                        <strong id="totalBanner">128</strong>
+                        <strong id="totalBanner">{{ $stats['total'] }}</strong>
                         pengajuan terdaftar
                     </p>
                 </div>
@@ -267,7 +267,7 @@
 
                         <div>
                             <span>Total Pengajuan</span>
-                            <h3 id="totalApplication">128</h3>
+                            <h3 id="totalApplication">{{ $stats['total'] }}</h3>
                         </div>
 
                         <i class="bi bi-file-earmark-text-fill card-decoration"></i>
@@ -287,7 +287,7 @@
 
                         <div>
                             <span>Menunggu Verifikasi</span>
-                            <h3 id="waitingApplication">32</h3>
+                            <h3 id="waitingApplication">{{ $stats['menunggu'] }}</h3>
                         </div>
 
                         <i class="bi bi-hourglass-split card-decoration"></i>
@@ -307,7 +307,7 @@
 
                         <div>
                             <span>Sedang Diproses</span>
-                            <h3 id="processApplication">41</h3>
+                            <h3 id="processApplication">{{ $stats['proses'] }}</h3>
                         </div>
 
                         <i class="bi bi-arrow-repeat card-decoration"></i>
@@ -327,7 +327,7 @@
 
                         <div>
                             <span>Selesai</span>
-                            <h3 id="completeApplication">55</h3>
+                            <h3 id="completeApplication">{{ $stats['selesai'] }}</h3>
                         </div>
 
                         <i class="bi bi-check-circle card-decoration"></i>
@@ -448,6 +448,24 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+{{-- Inject data dari database untuk dipakai managePengajuan.js --}}
+<script>
+    window.appStats = {
+        total:    {{ $stats['total'] }},
+        menunggu: {{ $stats['menunggu'] }},
+        proses:   {{ $stats['proses'] }},
+        selesai:  {{ $stats['selesai'] }},
+    };
+    window.appData = @json($pengajuans->items());
+    window.appPagination = {
+        currentPage: {{ $pengajuans->currentPage() }},
+        lastPage:    {{ $pengajuans->lastPage() }},
+        total:       {{ $pengajuans->total() }},
+        perPage:     {{ $pengajuans->perPage() }},
+    };
+</script>
+
 <script src="{{ asset('js/admin/managePengajuan.js') }}"></script>
 
 </body>
