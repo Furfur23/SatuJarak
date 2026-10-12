@@ -8,6 +8,7 @@ use App\Http\Controllers\PengajuanController;
 // ---------- Publik ----------
 Route::view('/', 'welcome')->name('home');
 Route::view('/layanan', 'User.layanan')->name('layanan');
+Route::view('/potensi', 'User.potensiDesa')->name('potensi');
 
 // ---------- Auth user (tamu saja) ----------
 Route::view('/login', 'auth.login')->name('login');
