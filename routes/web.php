@@ -9,6 +9,7 @@ use App\Http\Controllers\PengajuanController;
 Route::view('/', 'welcome')->name('home');
 Route::view('/layanan', 'User.layanan')->name('layanan');
 Route::view('/potensi', 'User.potensiDesa')->name('potensi');
+Route::view('/potensi-desa', 'User.potensidesa')->name('potensi-desa');
 
 // ---------- Auth user (tamu saja) ----------
 Route::view('/login', 'auth.login')->name('login');
@@ -50,7 +51,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::view('/dashboard',     'Admin.dashboardadmin')->name('dashboard');
     Route::view('/dashboardadmin','Admin.dashboardadmin');
-    Route::view('/potensi-desa',  'Admin.potensiDesa')->name('potensi-desa');
+    
     Route::view('/adminUserDetail','Admin.adminUserDetail')->name('adminUserDetail');
     Route::view('/adminUserTable', 'Admin.adminUserTable')->name('adminUserTable');
 });
