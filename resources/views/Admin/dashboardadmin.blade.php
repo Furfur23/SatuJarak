@@ -719,7 +719,7 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; }
             <div class="menu-icon i-green"><i class="bi bi-people-fill"></i></div>
             <div class="menu-title">Manage User</div>
             <div class="menu-count"><b id="count-user">0</b> pengguna</div>
-            <a href="{{ url('admin/user') }}" class="detail-link">Detail <i class="bi bi-chevron-right"></i></a>
+            <a href="{{ url('admin/adminUserTable') }}" class="detail-link">Detail <i class="bi bi-chevron-right"></i></a>
           </div>
         </div>
         <div class="col-6 col-xl-3">
@@ -754,7 +754,7 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; }
           <div class="detail-card">
             <div class="detail-card-title">Detail User</div>
             <ul class="mini-list" id="list-user"></ul>
-            <a href="{{ url('admin/user') }}" class="detail-link">Detail <i class="bi bi-chevron-right"></i></a>
+            <a href="{{ url('admin/adminUserDetail') }}" class="detail-link">Detail <i class="bi bi-chevron-right"></i></a>
           </div>
         </div>
         <div class="col-lg-6">

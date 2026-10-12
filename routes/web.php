@@ -54,3 +54,9 @@ Route::view('/dashboardadmin', 'Admin.dashboardadmin');
 
 Route::view('/layanan', 'User.layanan')->name('layanan');
 
+Route::get('/admin/adminUserTable', function () {
+    return view('Admin.adminUserTable');
+});
+Route::get('/admin/adminUserDetail', function () {
+    return view('Admin.adminUserDetail');
+});
