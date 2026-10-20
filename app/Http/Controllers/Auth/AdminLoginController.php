@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 
 class AdminLoginController extends Controller
 {
@@ -23,23 +25,24 @@ class AdminLoginController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required'],
+            'password' => ['required', 'string'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-
-            if ($user->is_admin) {
-                $request->session()->regenerate();
-                return redirect()->intended(route('dashboard'));
-            } else {
-                // If not an admin, log them out and show error
-                Auth::logout();
-                return back()->withErrors([
-                    'email' => 'Anda tidak memiliki akses sebagai Admin.',
-                ])->onlyInput('email');
-            }
+        $key = 'login:'.hash('sha256', Str::lower($credentials['email']).'|'.$request->ip());
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            return back()->withErrors([
+                'email' => 'Terlalu banyak percobaan login. Coba lagi dalam '.RateLimiter::availableIn($key).' detik.',
+            ])->onlyInput('email');
         }
+
+        if (Auth::attempt([...$credentials, 'is_admin' => true])) {
+            RateLimiter::clear($key);
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('dashboard'));
+        }
+
+        RateLimiter::hit($key, 60);
 
         return back()->withErrors([
             'email' => 'Kredensial yang diberikan tidak cocok dengan data kami.',

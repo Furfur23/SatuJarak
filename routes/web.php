@@ -60,7 +60,7 @@ Route::view('/layanan', 'User.layanan')->name('layanan');
 
 Route::get('/admin/adminUserTable', function () {
     return view('Admin.adminUserTable');
-});
+})->middleware(['auth', 'admin']);
 Route::get('/admin/adminUserDetail', function () {
     return view('Admin.adminUserDetail');
-});
+})->middleware(['auth', 'admin']);
