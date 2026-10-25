@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PengajuanController extends Controller
 {
-    // ── Publik: Form pengajuan (tidak perlu login) ───────────
+    // ── User: Form pengajuan (wajib login) ───────────────────
     public function index()
     {
         return view('User.userpengajuan');
     }
 
-    // ── Publik: Detail / konfirmasi pengajuan ────────────────
+    // ── User: Detail / konfirmasi pengajuan ──────────────────
     public function show(Pengajuan $pengajuan)
     {
         return view('User.detailpengajuan', compact('pengajuan'));
@@ -39,8 +40,10 @@ class PengajuanController extends Controller
             'file_surat'     => ['nullable', 'file', 'mimes:pdf,doc,docx', 'max:5120'],
         ]);
 
-        // user_id opsional (nullable) karena pengajuan bersifat publik
-        $data['user_id'] = null;
+        // Simpan user_id dari sesi yang sedang login.
+        // Route sudah dilindungi middleware 'auth', sehingga
+        // Auth::id() di sini dijamin tidak null.
+        $data['user_id'] = Auth::id();
 
         if ($request->hasFile('file_proposal')) {
             $data['file_proposal'] = $request->file('file_proposal')
