@@ -39,7 +39,7 @@
     $layanans = $layanans ?? [
         ['nama_layanan' => 'Antrean Online Dukcapil', 'deskripsi' => 'Ambil nomor antrean untuk layanan administrasi kependudukan.', 'link_url' => 'https://antriandukcapil.kedirikab.go.id/', 'logo' => 'images/logo_kediri.png', 'kategori' => 'masyarakat'],
         ['nama_layanan' => 'ESPPT-I', 'deskripsi' => 'Layanan terkait SPPT pajak bumi dan bangunan.', 'link_url' => '#', 'logo' => 'images/logo_kediri.png', 'kategori' => 'masyarakat'],
-        ['nama_layanan' => 'PESONA', 'deskripsi' => 'Informasi profil dan data kependudukan desa.', 'link_url' => 'https://play.google.com/store/apps/details?id=com.ruwindo.pesonakediri&hl=id', 'kategori' => 'masyarakat'],
+        ['nama_layanan' => 'PESONA', 'deskripsi' => 'Informasi profil dan data kependudukan desa.', 'link_url' => 'https://play.google.com/store/apps/details?id=com.ruwindo.pesonakediri&hl=id', 'logo' => 'images/logo_kediri.png', 'kategori' => 'masyarakat'],
         ['nama_layanan' => 'SIKSNG', 'deskripsi' => 'Sistem informasi untuk administrasi aparatur desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
         ['nama_layanan' => 'SIPENAK (SIMNANGKIS)', 'deskripsi' => 'Sistem pendukung pekerjaan administrasi desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
         ['nama_layanan' => 'Sistem Kependudukan', 'deskripsi' => 'Pengelolaan data kependudukan oleh aparatur desa.', 'link_url' => '#', 'kategori' => 'aparatur'],
@@ -189,7 +189,13 @@
 
         {{-- POTENSI DESA --}}
         <section id="potensi" class="mx-auto max-w-6xl px-5 py-14 md:py-20">
-            <h2 class="font-display text-3xl font-bold">Potensi desa</h2>
+            <div class="flex items-center justify-between">
+                <h2 class="font-display text-3xl font-bold">Potensi desa</h2>
+                <a href="{{ route('potensi-desa') }}"
+                class="font-semibold text-primary hover:underline">
+                    Lihat lebih detail
+                </a>
+            </div>
             <p class="mt-1 max-w-xl text-[var(--muted)]">Usaha warga Desa Jarak yang bisa Anda hubungi langsung.</p>
 
             <div class="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-3">
