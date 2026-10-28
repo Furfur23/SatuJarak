@@ -28,8 +28,7 @@ class AdminLoginController extends Controller
     /**
      * Handle the admin login request.
      *
-     * Rate limiter manual berbasis email+IP sudah ditangani di sini,
-     * dan route POST juga dijaga oleh throttle:5,1 sebagai lapisan ganda.
+     * Percobaan login gagal dibatasi berdasarkan email + IP.
      */
     public function login(Request $request)
     {

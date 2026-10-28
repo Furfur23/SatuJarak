@@ -20,12 +20,10 @@ Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout');
 
 // ---------- Login admin (jalur rahasia) ----------
 // URL disembunyikan via .env — tidak terdaftar secara publik.
-// throttle:5,1 = maks. 5 request per menit per IP sebagai lapisan
-// pertahanan tambahan dari brute-force di level route.
+// Percobaan login gagal dibatasi berdasarkan email + IP di controller.
 $secretPath = env('ADMIN_SECRET_LOGIN_PATH', 'admin-secret-login');
 Route::get($secretPath,  [AdminLoginController::class, 'showLoginForm'])->name('admin.login.form');
 Route::post($secretPath, [AdminLoginController::class, 'login'])
-    ->middleware('throttle:5,1')
     ->name('admin.login.submit');
 
 // ---------- Pengajuan (wajib login sebagai user) ----------

@@ -83,7 +83,7 @@ class AuthenticationTest extends TestCase
 
         $this->post(route('admin.login.submit'), [
             'email' => $admin->email, 'password' => 'password',
-        ])->assertRedirect(route('dashboard'));
+        ])->assertRedirect(route('admin.dashboard'));
 
         $this->assertAuthenticatedAs($admin);
     }
@@ -118,13 +118,17 @@ class AuthenticationTest extends TestCase
 
         $this->post(route($route), [
             'email' => $user->email, 'password' => 'password',
-        ])->assertSessionHasErrors('email');
+        ])->assertRedirect()->assertSessionHasErrors('email');
         $this->assertGuest();
+        $this->assertStringContainsString('Coba lagi dalam', session('errors')->first('email'));
+        $this->withCookie(config('session.cookie'), session()->getId())
+            ->get(route($admin ? 'admin.login.form' : 'login'))
+            ->assertOk()->assertSee('Terlalu banyak percobaan login.');
 
         $this->travel(61)->seconds();
         $this->post(route($route), [
             'email' => $user->email, 'password' => 'password',
-        ])->assertRedirect(route($admin ? 'dashboard' : 'pengajuan.index'));
+        ])->assertRedirect(route($admin ? 'admin.dashboard' : 'pengajuan.index'));
         $this->assertAuthenticatedAs($user);
     }
 
@@ -150,7 +154,7 @@ class AuthenticationTest extends TestCase
         $this->travel(61)->seconds();
         $this->post(route($route), [
             'email' => $user->email, 'password' => 'password',
-        ])->assertRedirect(route($admin ? 'dashboard' : 'pengajuan.index'));
+        ])->assertRedirect(route($admin ? 'admin.dashboard' : 'pengajuan.index'));
 
         $this->assertAuthenticatedAs($user);
         $this->assertDatabaseHas('sessions', ['user_id' => $user->id]);
@@ -226,9 +230,63 @@ class AuthenticationTest extends TestCase
         return [
             ['/admin/dashboard'], ['/dashboard'], ['/dashboardadmin'],
             ['/admin/users'], ['/admin/users/detail'],
-            ['/adminUserTable'], ['/adminUserDetail'],
             ['/admin/adminUserTable'], ['/admin/adminUserDetail'],
         ];
+    }
+
+    public static function adminLoginRoutes(): array
+    {
+        return [['admin.login.submit'], ['login.submit']];
+    }
+
+    #[DataProvider('adminLoginRoutes')]
+    public function test_third_admin_login_removes_oldest_session_and_preserves_other_users(string $route): void
+    {
+        config(['session.driver' => 'database']);
+        $admin = User::factory()->create(['is_admin' => true]);
+        $other = User::factory()->create();
+        foreach ([
+            ['oldest', $admin->id, time() - 20],
+            ['recent', $admin->id, time() - 10],
+            ['other-user', $other->id, time()],
+        ] as [$id, $userId, $lastActivity]) {
+            DB::table('sessions')->insert([
+                'id' => $id,
+                'user_id' => $userId,
+                'payload' => base64_encode(serialize([])),
+                'last_activity' => $lastActivity,
+            ]);
+        }
+
+        $this->post(route($route), [
+            'email' => $admin->email, 'password' => 'password',
+        ])->assertRedirect(route($route === 'admin.login.submit' ? 'admin.dashboard' : 'pengajuan.index'));
+
+        $this->assertSame(2, DB::table('sessions')->where('user_id', $admin->id)->count());
+        $this->assertDatabaseMissing('sessions', ['id' => 'oldest']);
+        $this->assertDatabaseHas('sessions', ['id' => 'recent']);
+        $this->assertDatabaseHas('sessions', ['id' => 'other-user']);
+        $this->assertDatabaseHas('sessions', ['id' => session()->getId(), 'user_id' => $admin->id]);
+    }
+
+    public function test_admin_login_with_non_database_sessions_does_not_modify_database_sessions(): void
+    {
+        config(['session.driver' => 'array']);
+        $admin = User::factory()->create(['is_admin' => true]);
+        foreach (['first', 'second', 'third'] as $id) {
+            DB::table('sessions')->insert([
+                'id' => $id,
+                'user_id' => $admin->id,
+                'payload' => base64_encode(serialize([])),
+                'last_activity' => time(),
+            ]);
+        }
+
+        $this->post(route('admin.login.submit'), [
+            'email' => $admin->email, 'password' => 'password',
+        ])->assertRedirect(route('admin.dashboard'));
+
+        $this->assertSame(3, DB::table('sessions')->where('user_id', $admin->id)->count());
     }
 
     #[DataProvider('adminPages')]
