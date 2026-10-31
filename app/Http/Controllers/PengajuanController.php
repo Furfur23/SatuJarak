@@ -111,4 +111,11 @@ class PengajuanController extends Controller
         return redirect()->route('admin.pengajuan.index')
             ->with('success', "Status pengajuan #{$pengajuan->id} berhasil diperbarui.");
     }
+// Menampilkan template Surat Keterangan Persetujuan
+    public function suratPersetujuan(Pengajuan $pengajuan)
+    {
+        abort_unless($pengajuan->status === 'Selesai', 403);
+
+        return view('Admin.suratPersetujuan', compact('pengajuan'));
+    }
 }

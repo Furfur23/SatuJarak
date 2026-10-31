@@ -44,6 +44,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/pengajuan',              [PengajuanController::class, 'adminIndex'])->name('pengajuan.index');
     Route::get('/pengajuan/{pengajuan}',  [PengajuanController::class, 'adminShow'])->name('pengajuan.show');
     Route::patch('/pengajuan/{pengajuan}',[PengajuanController::class, 'adminUpdate'])->name('pengajuan.update');
+    Route::get('/pengajuan/{pengajuan}/surat-persetujuan', [PengajuanController::class, 'suratPersetujuan'])->name('pengajuan.surat');
 
     // Halaman statis admin (belum ada controller)
     Route::view('/layanan',              'Admin.manageLayanan')->name('layanan.index');

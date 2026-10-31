@@ -440,19 +440,39 @@
                                 <i class="bi bi-arrow-right action-arrow"></i>
                             </button>
 
-                            <!-- Tombol Verifikasi -->
-                            <button type="button" class="action-btn verify-btn" data-bs-toggle="modal" data-bs-target="#verifyModal">
-                                <div class="action-btn-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
+                           <!-- Tombol Verifikasi -->
+<button type="button" class="action-btn verify-btn"
+        data-bs-toggle="modal"
+        data-bs-target="#verifyModal">
+    <div class="action-btn-icon">
+        <i class="bi bi-check-circle-fill"></i>
+    </div>
 
-                                <div class="action-btn-text">
-                                    <strong>Verifikasi</strong>
-                                    <span>Setujui dan proses pengajuan</span>
-                                </div>
+    <div class="action-btn-text">
+        <strong>Verifikasi</strong>
+        <span>Setujui dan proses pengajuan</span>
+    </div>
 
-                                <i class="bi bi-arrow-right action-arrow"></i>
-                            </button>
+    <i class="bi bi-arrow-right action-arrow"></i>
+</button>
+
+<!-- Tombol Cetak Surat Persetujuan -->
+@if($pengajuan->status === 'Selesai')
+    <a href="{{ route('admin.pengajuan.surat', $pengajuan->id) }}"
+       class="action-btn verify-btn"
+       target="_blank">
+        <div class="action-btn-icon">
+            <i class="bi bi-file-earmark-check-fill"></i>
+        </div>
+
+        <div class="action-btn-text">
+            <strong>Cetak Surat Persetujuan</strong>
+            <span>Buka dan cetak surat persetujuan</span>
+        </div>
+
+        <i class="bi bi-arrow-right action-arrow"></i>
+    </a>
+@endif
 
                         </div>
                     </div>
