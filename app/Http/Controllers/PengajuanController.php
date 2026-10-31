@@ -36,7 +36,7 @@ class PengajuanController extends Controller
             'tanggal_mulai'  => ['nullable', 'date'],
             'tanggal_selesai'=> ['nullable', 'date', 'after_or_equal:tanggal_mulai'],
             'deskripsi'      => ['nullable', 'string'],
-            'file_proposal'  => ['nullable', 'file', 'mimes:pdf,doc,docx', 'max:5120'],
+            'file_proposal'  => ['required', 'file', 'mimes:pdf', 'max:5120'],
             'file_surat'     => ['nullable', 'file', 'mimes:pdf,doc,docx', 'max:5120'],
         ]);
 

@@ -881,9 +881,9 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
               </div>
             </div>
             <label class="upload-choose-btn" for="proposal-file">Pilih File</label>
-            <input type="file" id="proposal-file" name="proposal_file" accept=".pdf" hidden required>
+            <input type="file" id="proposal-file" name="file_proposal" accept=".pdf" hidden required>
           </div>
-          @error('proposal_file') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          @error('file_proposal') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
 
         <div class="d-flex justify-content-end gap-2">
