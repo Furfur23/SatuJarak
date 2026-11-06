@@ -161,10 +161,10 @@
         }
 
         /* DASHBOARD TIDAK BISA DIKLIK */
-        .dashboard-disabled {
+        /* .dashboard-disabled {
             cursor: not-allowed;
             opacity: 0.72;
-        }
+        } */
 
         .dashboard-disabled:hover {
             background: var(--white);
@@ -644,14 +644,13 @@
 
         <!-- MENU NAVIGASI -->
         <nav class="nav-menu">
-            <span
-                class="nav-link-custom dashboard-disabled"
-                aria-disabled="true"
-                title="Dashboard belum tersedia"
+            <a
+                href="{{ route('home') }}"
+                class="nav-link-custom"
             >
                 <i class="bi bi-grid-1x2"></i>
                 <span>Dashboard</span>
-            </span>
+            </a>
 
             <a
                 href="{{ url('/potensi-desa') }}"
