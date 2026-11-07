@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/detailpengajuan/{pengajuan}', [PengajuanController::class, 'show'])->name('pengajuan.show');
     Route::post('/pengajuan',                  [PengajuanController::class, 'store'])->name('pengajuan.store');
 });
+  Route::get('/lamanUMKM', function () {
+       return view('User.lamanUMKM');
+   });
 
 // ---------- Admin (wajib login + is_admin) ----------
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
