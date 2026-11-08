@@ -12,6 +12,7 @@ Route::view('/potensi', 'User.potensiDesa')->name('potensi');
 Route::view('/potensi-desa', 'User.potensidesa')->name('potensi-desa');
 Route::view('/potensi-desa/wisata', 'User.wisata')->name('wisata.index');
 
+
 // ---------- Auth user (tamu saja) ----------
 Route::view('/login', 'auth.login')->name('login');
 Route::view('/daftar', 'auth.daftar')->name('daftar');
@@ -36,9 +37,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/detailpengajuan/{pengajuan}', [PengajuanController::class, 'show'])->name('pengajuan.show');
     Route::post('/pengajuan',                  [PengajuanController::class, 'store'])->name('pengajuan.store');
 });
-  Route::get('/lamanUMKM', function () {
-       return view('User.lamanUMKM');
-   });
 
 // ---------- Admin (wajib login + is_admin) ----------
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
