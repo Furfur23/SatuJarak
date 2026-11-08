@@ -785,6 +785,27 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
       <h1 class="page-heading">Pengajuan Permohonan</h1>
       <p class="page-sub">Isi data di bawah ini dengan lengkap untuk mengajukan kegiatan KKN/Riset di desa.</p>
 
+      @if (session('success'))
+        <div class="alert alert-success d-flex align-items-center gap-2 mb-4" style="border-radius: var(--radius-sm); font-size: 14px;" role="alert">
+          <i class="bi bi-check-circle-fill fs-5"></i>
+          <div>{{ session('success') }}</div>
+        </div>
+      @endif
+
+      @if ($errors->any())
+        <div class="alert alert-danger mb-4" style="border-radius: var(--radius-sm); font-size: 14px;" role="alert">
+          <div class="d-flex align-items-center gap-2 mb-1 fw-bold">
+            <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+            <span>Pengajuan gagal dikirim. Periksa kesalahan berikut:</span>
+          </div>
+          <ul class="mb-0 ps-3">
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
       <form id="form-pengajuan" novalidate method="POST" action="{{ route('pengajuan.store') }}" enctype="multipart/form-data">
         @csrf
 

@@ -11,14 +11,19 @@ class Pengajuan extends Model
         'user_id',
         'nama_lengkap',
         'nim',
+        'universitas',
+        'fakultas',
         'email_pemohon',
         'no_hp',
         'program_studi',
         'nama_instansi',
         'jenis_kegiatan',
         'judul_kerjasama',
+        'lokasi',
+        'jumlah_peserta',
         'tanggal_mulai',
         'tanggal_selesai',
+        'dosen_pembimbing',
         'deskripsi',
         'file_proposal',
         'file_surat',
@@ -27,7 +32,7 @@ class Pengajuan extends Model
     ];
 
     protected $casts = [
-        'tanggal_mulai'   => 'date',
+        'tanggal_mulai' => 'date',
         'tanggal_selesai' => 'date',
     ];
 

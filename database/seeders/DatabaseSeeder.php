@@ -15,11 +15,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Akun Admin Utama SatuJarak
+        User::updateOrCreate(
+            ['email' => 'admin@satujarak.desa.id'],
+            [
+                'name' => 'Administrator SatuJarak',
+                'password' => 'adminjarak2026',
+                'is_admin' => true,
+                'role' => 'Admin',
+                'status' => 'Aktif',
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            LayananSeeder::class,
+            PotensiDesaSeeder::class,
         ]);
     }
 }
