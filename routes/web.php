@@ -11,6 +11,10 @@ Route::view('/layanan', 'User.layanan')->name('layanan');
 Route::view('/potensi', 'User.potensiDesa')->name('potensi');
 Route::view('/potensi-desa', 'User.potensidesa')->name('potensi-desa');
 Route::view('/potensi-desa/wisata', 'User.wisata')->name('wisata.index');
+Route::view('/potensi-desa/produk', 'User.katalogUMKM')->name('katalog-umkm');
+Route::get('/lamanUMKM', function () {
+    return view('User.lamanUMKM');
+    });
 
 
 // ---------- Auth user (tamu saja) ----------
