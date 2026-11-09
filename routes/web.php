@@ -11,11 +11,8 @@ Route::redirect('/layanan', '/#layanan')->name('layanan');
 Route::view('/potensi', 'User.potensiDesa')->name('potensi');
 Route::view('/potensi-desa', 'User.potensidesa')->name('potensi-desa');
 Route::view('/potensi-desa/wisata', 'User.wisata')->name('wisata.index');
-Route::view('/potensi-desa/produk', 'User.katalogUMKM')->name('katalog-umkm');
-Route::get('/lamanUMKM', function () {
-    return view('User.lamanUMKM');
-    });
-
+Route::view('/potensi-desa/produk', 'User.lamanUMKM')->name('laman-umkm');
+Route::view('/potensi-desa/produk/1', 'User.detailUMKM')->name('detail-produk');
 
 // ---------- Auth user (tamu saja) ----------
 Route::view('/login', 'auth.login')->name('login');
