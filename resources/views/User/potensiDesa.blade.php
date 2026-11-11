@@ -781,7 +781,7 @@
                                 <i class="bi bi-geo-alt"></i>
                                 Desa Jarak
                             </span>
-
+                                            
                             <a
                                 href="{{ route('laman-umkm') }}"
                                 class="detail-link"
