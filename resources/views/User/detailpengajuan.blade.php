@@ -475,13 +475,69 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
 }
 
 .status-badge.status-menunggu  { background: var(--c-peach); color: var(--c-peach-text); }
-.status-badge.status-disetujui { background: #FFFFFF;        color: #2D9B6A; }
+.status-badge.status-proses    { background: #E0F2FE; color: #0369A1; }
+.status-badge.status-disetujui { background: #E6F4EA; color: #137333; }
 .status-badge.status-ditolak   { background: var(--c-pink);  color: var(--c-pink-text); }
 
 .status-dot { width: 10px; height: 10px; border-radius: 50%; }
 .status-dot.status-menunggu  { background: var(--c-peach-text); }
-.status-dot.status-disetujui { background: #2D9B6A; }
+.status-dot.status-proses    { background: #0284C7; }
+.status-dot.status-disetujui { background: #137333; }
 .status-dot.status-ditolak   { background: var(--c-pink-text); }
+
+.info-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 24px;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.info-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 16px;
+  margin-bottom: 22px;
+}
+
+.info-card-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--c-heading);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px 24px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 15px;
+  color: var(--text-main);
+  font-weight: 700;
+}
 
 .timeline-card {
   background: linear-gradient(135deg, #FDEBD3 0%, #FBE3C0 100%);
@@ -671,21 +727,22 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
 <body>
 
 @php
-    $kode        = $pengajuan->kode ?? 'KKN-2025-0001';
-    $judul       = $pengajuan->judul_kegiatan ?? 'Pemberdayaan UMKM Desa Kediri Berbasis Digital';
-    $status      = $pengajuan->status ?? 'menunggu';
+    $tahun       = $pengajuan->created_at ? $pengajuan->created_at->format('Y') : date('Y');
+    $kode        = 'KKN-' . $tahun . '-' . str_pad($pengajuan->id, 4, '0', STR_PAD_LEFT);
+    $judul       = $pengajuan->judul_kerjasama ?? $pengajuan->judul_kegiatan ?? 'Pengajuan Kerja Sama';
+    $status      = $pengajuan->status ?? 'Menunggu Verifikasi';
 
     $statusConfig = [
-        'menunggu'  => ['label' => 'Menunggu Persetujuan', 'class' => 'status-menunggu'],
-        'disetujui' => ['label' => 'Disetujui', 'class' => 'status-disetujui'],
-        'ditolak'   => ['label' => 'Ditolak', 'class' => 'status-ditolak'],
+        'Menunggu Verifikasi' => ['label' => 'Menunggu Verifikasi', 'class' => 'status-menunggu'],
+        'Sedang Diproses'     => ['label' => 'Sedang Diproses',     'class' => 'status-proses'],
+        'Selesai'             => ['label' => 'Selesai (Disetujui)', 'class' => 'status-disetujui'],
+        'Ditolak'             => ['label' => 'Ditolak',             'class' => 'status-ditolak'],
+        'menunggu'            => ['label' => 'Menunggu Verifikasi', 'class' => 'status-menunggu'],
+        'proses'              => ['label' => 'Sedang Diproses',     'class' => 'status-proses'],
+        'disetujui'           => ['label' => 'Selesai (Disetujui)', 'class' => 'status-disetujui'],
+        'ditolak'             => ['label' => 'Ditolak',             'class' => 'status-ditolak'],
     ];
-    $cfg = $statusConfig[$status] ?? $statusConfig['menunggu'];
-
-    $timelineSteps = $timeline ?? [
-        (object) ['icon' => '✅', 'title' => 'Permohonan Dikirim', 'time' => '22 Sep 2025 · 10:30 WIB'],
-        (object) ['icon' => '⏳', 'title' => 'Menunggu Persetujuan', 'time' => 'Sejak 22 Sep 2025 · 10:31 WIB'],
-    ];
+    $cfg = $statusConfig[$status] ?? ['label' => $status, 'class' => 'status-menunggu'];
 @endphp
 
 <div class="app-shell">
@@ -699,8 +756,9 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
     </div>
   </div>
   <ul class="nav-list">
-    <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('dashboard') kalau halamannya sudah ada --}}<i class="bi bi-grid-fill"></i> Dashboard</a></li>
-    <li><a href="#" onclick="return false;" class="nav-link"> {{-- TODO: ganti ke route('potensi-desa') --}}<i class="bi bi-stars"></i> Potensi Desa</a></li>
+    <li><a href="{{ route('home') }}" class="nav-link"><i class="bi bi-grid-fill"></i> Dashboard</a></li>
+    <li><a href="{{ route('potensi') }}" class="nav-link"><i class="bi bi-stars"></i> Potensi Desa</a></li>
+    <li><a href="{{ route('pengajuan.index') }}" class="nav-link"><i class="bi bi-plus-circle"></i> Buat Pengajuan</a></li>
   </ul>
 
   <div class="help-card">
@@ -777,6 +835,23 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
       <h1 class="page-heading">Detail Pengajuan</h1>
       <p class="page-sub">Pantau status dan riwayat proses pengajuan kamu di sini.</p>
 
+      @if (session('success'))
+        <div class="alert alert-success d-flex align-items-center gap-2 mb-4" style="border-radius: 14px; font-size: 14px;" role="alert">
+          <i class="bi bi-check-circle-fill fs-5"></i>
+          <div>{{ session('success') }}</div>
+        </div>
+      @endif
+
+      @if ($pengajuan->catatan_admin)
+        <div class="alert alert-warning d-flex align-items-start gap-2 mb-4" style="border-radius: 14px; font-size: 14px; background: #FFFBEB; border-color: #FDE68A; color: #92400E;" role="alert">
+          <i class="bi bi-info-circle-fill fs-5 text-warning mt-0"></i>
+          <div>
+            <div class="fw-bold mb-1">Catatan dari Petugas Admin Desa:</div>
+            <div>{{ $pengajuan->catatan_admin }}</div>
+          </div>
+        </div>
+      @endif
+
       <div class="summary-card">
         <div class="summary-code">{{ $kode }}</div>
         <div class="summary-title">{{ $judul }}</div>
@@ -785,17 +860,86 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
         </div>
       </div>
 
-      <div class="timeline-card">
-        <div id="timeline-list">
-          @foreach($timelineSteps as $step)
-            <div class="timeline-step-item">
-              <div class="step-icon">{{ $step->icon }}</div>
-              <div class="step-content">
-                <div class="step-title">{{ $step->title }}</div>
-                <div class="step-time">{{ $step->time }}</div>
-              </div>
-            </div>
-          @endforeach
+      <div class="info-card">
+        <div class="info-card-header">
+          <h3 class="info-card-title"><i class="bi bi-person-lines-fill"></i> Rincian Pengajuan</h3>
+          @if ($pengajuan->status === 'Selesai')
+            <a href="{{ route('admin.pengajuan.surat', $pengajuan->id) }}" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1" style="border-radius: 8px;">
+              <i class="bi bi-printer"></i> Unduh Surat Persetujuan
+            </a>
+          @endif
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Nama Pemohon</span>
+            <span class="info-value">{{ $pengajuan->nama_lengkap }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">NIM</span>
+            <span class="info-value">{{ $pengajuan->nim ?? '-' }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Universitas / Instansi</span>
+            <span class="info-value">{{ $pengajuan->universitas ?? $pengajuan->nama_instansi ?? '-' }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Fakultas / Prodi</span>
+            <span class="info-value">{{ $pengajuan->fakultas ?? $pengajuan->program_studi ?? '-' }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">No. Telepon / WhatsApp</span>
+            <span class="info-value">{{ $pengajuan->no_hp }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Email</span>
+            <span class="info-value">{{ $pengajuan->email_pemohon }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Jenis Permohonan</span>
+            <span class="info-value">{{ strtoupper($pengajuan->jenis_kegiatan) }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Lokasi Kegiatan</span>
+            <span class="info-value">{{ $pengajuan->lokasi ?? 'Desa Jarak' }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Jumlah Peserta</span>
+            <span class="info-value">{{ $pengajuan->jumlah_peserta ? $pengajuan->jumlah_peserta . ' Orang' : '-' }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Periode Pelaksanaan</span>
+            <span class="info-value">
+              {{ $pengajuan->tanggal_mulai ? $pengajuan->tanggal_mulai->format('d M Y') : '-' }} s/d {{ $pengajuan->tanggal_selesai ? $pengajuan->tanggal_selesai->format('d M Y') : '-' }}
+            </span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Dosen Pembimbing</span>
+            <span class="info-value">{{ $pengajuan->dosen_pembimbing ?? '-' }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">File Berkas Proposal</span>
+            <span class="info-value">
+              @if ($pengajuan->file_proposal)
+                <a href="{{ asset('storage/' . $pengajuan->file_proposal) }}" target="_blank" class="text-success text-decoration-underline d-inline-flex align-items-center gap-1">
+                  <i class="bi bi-file-earmark-pdf"></i> Unduh Proposal
+                </a>
+              @else
+                <span class="text-muted">Tidak ada berkas</span>
+              @endif
+            </span>
+          </div>
         </div>
       </div>
     </div>

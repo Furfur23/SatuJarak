@@ -783,9 +783,8 @@
                             </span>
 
                             <a
-                                href="{{ url('/lamanUMKM') }}"
+                                href="{{ route('laman-umkm') }}"
                                 class="detail-link"
-                                
                             >
                                 Lihat Detail
                                 <i class="bi bi-arrow-right"></i>
@@ -855,9 +854,8 @@
                             </span>
 
                             <a
-                                href="javascript:void(0)"
+                                href="{{ route('wisata.index') }}"
                                 class="detail-link"
-                                onclick="showPlaceholder(event)"
                             >
                                 Lihat Detail
                                 <i class="bi bi-arrow-right"></i>
