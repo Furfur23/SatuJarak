@@ -99,7 +99,7 @@
 
         .header nav {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
             text-decoration: none;
         }
 
@@ -339,6 +339,172 @@
         section {
             scroll-margin-top: 3rem;
         }
+        /* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .hero .hero-container .image img {
+        width: 24rem;
+        height: 20rem;
+    }
+
+    .pemesanan .container-pesan {
+        gap: 2rem;
+    }
+
+    .kerajinan .kerajinan-container {
+        gap: 2rem;
+    }
+}
+
+/* HP */
+@media (max-width: 768px) {
+    body {
+        width: 100%;
+    }
+
+    /* Header: logo di atas, menu di bawah */
+    .header {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0.4rem 0.75rem;
+    }
+
+    .header img {
+        width: 3.2rem;
+        height: 3.2rem;
+    }
+
+    .header .title {
+        padding-top: 0.9rem;
+    }
+
+    .header .title h3 {
+        font-size: 1.2rem;
+    }
+
+    .header nav {
+        width: 100%;
+        justify-content: space-around;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        padding: 0.3rem 0 0.4rem;
+    }
+
+    /* Hero */
+    .hero {
+        margin-top: 6.5rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .hero .hero-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero .hero-container .content h3 {
+        width: 100%;
+        min-width: 0;
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+        text-align: center;
+    }
+
+    .hero .hero-container .content p {
+        width: 100%;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    .hero .hero-container .content .btn {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    .hero .hero-container .image img {
+        width: 100%;
+        height: auto;
+        max-height: 18rem;
+        object-fit: cover;
+        margin-top: 0;
+    }
+
+    /* Cara pemesanan */
+    .pemesanan {
+        margin-top: 2rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .pemesanan .container-pesan {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .pemesanan .container-pesan .block {
+        padding: 1rem;
+        border-radius: 1.2rem;
+    }
+
+    /* Produk & kerajinan */
+    .produk,
+    .kerajinan {
+        margin-top: 2rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .produk .produk-container,
+    .kerajinan .kerajinan-container {
+        gap: 1.2rem;
+        padding-top: 1.5rem;
+        margin-top: 0;
+    }
+
+    .produk .produk-container .block-produk,
+    .kerajinan .kerajinan-container .block-produk {
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .produk .produk-container .block-produk img,
+    .kerajinan .kerajinan-container .block-produk img {
+        height: 220px;
+    }
+
+    /* Footer & peta */
+    footer {
+        margin-top: 2rem;
+        padding: 1.5rem 1rem;
+    }
+
+    footer .footer-container iframe {
+        width: 100%;
+        max-width: 100%;
+        height: 300px;
+    }
+
+    section {
+        scroll-margin-top: 7rem;
+    }
+}
+
+/* HP kecil (<= 400px) */
+@media (max-width: 400px) {
+    .header nav {
+        font-size: 0.78rem;
+    }
+
+    .hero .hero-container .content h3 {
+        font-size: 1.15rem;
+    }
+
+    .hero .hero-container .content .btn a {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
     </style>
 
     <div class="header">
@@ -351,11 +517,10 @@
         </div>
 
         <nav>
-            <a href="">Dashboard</a>
-            <a href="">Potensi Desa</a>
-            <a href="">Pengajuan</a>
-            <a href="">Layanan</a>
-            <a href="">UMKM</a>
+            <a href="{{ url('/wisata') }}">Wisata</a>
+            <a href="{{ url('/potensiDesa') }}">Potensi Desa</a>
+            <a href="{{ url('/detailpengajuan') }}">Pengajuan</a>
+            <a href="#produk">UMKM</a>
 
         </nav>
     </div>

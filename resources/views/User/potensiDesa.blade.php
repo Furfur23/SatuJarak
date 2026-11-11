@@ -783,9 +783,9 @@
                             </span>
 
                             <a
-                                href="javascript:void(0)"
+                                href="{{ url('/lamanUMKM') }}"
                                 class="detail-link"
-                                onclick="showPlaceholder(event)"
+                                
                             >
                                 Lihat Detail
                                 <i class="bi bi-arrow-right"></i>

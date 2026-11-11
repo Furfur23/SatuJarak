@@ -15,6 +15,9 @@ Route::view('/potensi-desa/produk', 'User.katalogUMKM')->name('katalog-umkm');
 Route::get('/lamanUMKM', function () {
     return view('User.lamanUMKM');
     });
+    Route::get('/potensiDesa', function () {
+    return view('User.potensiDesa');
+});
 
 
 // ---------- Auth user (tamu saja) ----------
