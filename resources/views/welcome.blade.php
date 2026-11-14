@@ -128,21 +128,27 @@
         ['judul' => 'Contoh judul informasi desa ketiga', 'kategori' => 'Layanan', 'created_at' => '2026-08-20'],
     ];
 
-    $potensis = $potensis ?? [
+   $potensis = $potensis ?? [
         [
-            'nama_umkm' => 'Contoh UMKM Satu',
-            'pemilik' => 'Nama pemilik',
-            'deskripsi' => 'Deskripsi singkat produk atau jasa UMKM warga Desa Jarak.',
+            'nama_umkm' => 'Kuliner & Makanan Khas',
+            'pemilik' => 'UMKM Olahan Pangan Desa Jarak',
+            'deskripsi' => 'Beragam makanan olahan, jajanan tradisional, dan produk kuliner lokal buatan warga Desa Jarak.',
+            'url' => url('/potensi-desa/produk#produk'),
+            'gambar' => 'images/kemiri_bakery.jpeg', 
         ],
         [
-            'nama_umkm' => 'Contoh UMKM Dua',
-            'pemilik' => 'Nama pemilik',
-            'deskripsi' => 'Deskripsi singkat produk atau jasa UMKM warga Desa Jarak.',
+            'nama_umkm' => 'Kerajinan Tangan',
+            'pemilik' => 'Pengrajin Lokal Desa Jarak',
+            'deskripsi' => 'Produk kriya dan kerajinan tangan kreatif dengan nilai seni serta kualitas khas warga Desa Jarak.',
+            'url' => url('/potensi-desa/produk#kerajinan'),
+            'gambar' => 'images/riff_art.jpg',
         ],
         [
-            'nama_umkm' => 'Contoh UMKM Tiga',
-            'pemilik' => 'Nama pemilik',
-            'deskripsi' => 'Deskripsi singkat produk atau jasa UMKM warga Desa Jarak.',
+            'nama_umkm' => 'Wisata Desa',
+            'pemilik' => 'Destinasi Alam & Edukasi',
+            'deskripsi' => 'Jelajahi pesona wisata alam, rekreasi keluarga, dan edukasi menarik yang ada di Desa Jarak.',
+            'url' => url('/potensi-desa/wisata'),
+            'gambar' => 'Potensi Desa/Wisata/sumber_ubalan_renang.webp', 
         ],
     ];
 @endphp
@@ -313,15 +319,27 @@
                     Lihat lebih detail
                 </a>
             </div>
-            <p class="mt-1 max-w-xl text-[var(--muted)]">Usaha warga Desa Jarak yang bisa Anda hubungi langsung.</p>
+            <p class="mt-1 max-w-xl text-[var(--muted)]">Kategori potensi dan usaha warga Desa Jarak yang bisa Anda jelajahi.</p>
 
             <div class="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-3">
                 @foreach ($potensis as $p)
-                    <article class="border-t-4 border-[var(--kunyit)] pt-4">
-                        <h3 class="font-display text-xl font-bold">{{ data_get($p, 'nama_umkm') }}</h3>
-                        <p class="text-sm text-[var(--muted)]">Dikelola {{ data_get($p, 'pemilik') }}</p>
+                    <a href="{{ data_get($p, 'url', route('potensi-desa')) }}"
+                        class="group block border-t-4 border-[var(--kunyit)] pt-4 transition hover:bg-white/70 rounded-b-lg px-2 -mx-2">
+                        
+                        @if (data_get($p, 'gambar'))
+                            <div class="mb-4 overflow-hidden rounded-lg bg-[var(--line)]/50">
+                                <img src="{{ asset(data_get($p, 'gambar')) }}" 
+                                     alt="{{ data_get($p, 'nama_umkm') }}"
+                                     class="h-48 w-full object-cover transition duration-300 group-hover:scale-105">
+                            </div>
+                        @endif
+
+                        <h3 class="font-display text-xl font-bold group-hover:text-[var(--leaf)] group-hover:underline underline-offset-4">
+                            {{ data_get($p, 'nama_umkm') }}
+                        </h3>
+                        <p class="text-sm text-[var(--muted)]">{{ data_get($p, 'pemilik') }}</p>
                         <p class="mt-3 leading-relaxed">{{ data_get($p, 'deskripsi') }}</p>
-                    </article>
+                    </a>
                 @endforeach
             </div>
         </section>
@@ -337,7 +355,7 @@
                         dari akun yang sama.
                     </p>
                 </div>
-                <<div class="flex flex-wrap gap-3">
+                <div class="flex flex-wrap gap-3">
                     @auth
                         <a href="{{ route('pengajuan.index') }}"
                             class="rounded-md bg-[var(--kunyit)] px-6 py-3 font-semibold text-[var(--ink)] hover:brightness-95">Buat
